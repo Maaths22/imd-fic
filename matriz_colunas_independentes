@@ -1,0 +1,80 @@
+var paridade := matriz[10,3]
+var numero := 0
+var max_c1 := 0
+var max_c2 := 0
+var max_c3 := 0
+var backup := 0
+var l1 := 0
+var l2 := 0
+var l3 := 0
+
+para i de 0 até 9 faça
+	para j de 0 até 2 faça
+		paridade[i][j] := 0
+	fim        
+fim
+
+enquanto numero <> -1 faça
+    para i de 0 até 9 faça
+        numero := leia_inteiro
+        se numero == -1 então
+        	para i de 0 até 9 faça
+        		para j de 0 até 2 faça
+           			se j < 2 então
+                		imprima "{paridade[i][j]} "
+            		senão
+               			escreva paridade[i][j]
+           			 fim
+        		fim
+    		fim 
+            return 1
+        senão
+            se (numero mod 2 == 0) então
+                se max_c3 < 10
+                    max_c3 := max_c3 + 1
+                    paridade[l3][2] := numero
+                    l3 := l3 + 1
+                senão 
+                    backup := paridade[0][2]
+                    para j de 0 até 8 faça
+                        paridade[j][2] := paridade[j+1][2]
+                    fim
+                    paridade[9][2] := numero
+                    se max_c2 < 10 então
+                        max_c2 := max_c2 + 1
+                        paridade[l2][1] := backup
+                        l2 := l2 + 1
+                    senão                
+                        para j de 0 até 8 faça
+                            paridade[j][1] := paridade[j+1][1]
+                        fim
+                        paridade[9][1] := backup
+                    fim                
+                fim
+            senão se numero mod 2 <> 0 então
+                se max_c1 < 10
+                    max_c1 := max_c1 + 1
+                    paridade[l1][0] := numero
+                    l1 := l1 + 1
+                senão
+                    backup := paridade[0][0]
+                    para j de 0 até 8 faça
+                        paridade[j][0] := paridade[j+1][0]
+                    fim
+                    paridade[9][0] := numero
+                    se max_c2 < 10 então                    	
+                        max_c2 := max_c2 + 1                        
+                        paridade[l2][1] := backup
+                        l2 := l2 + 1
+                    senão                
+                        para j de 0 até 8 faça
+                            paridade[j][1] := paridade[j+1][1]
+                        fim
+                        paridade[9][1] := backup
+                    fim 
+                fim
+            fim
+    	fim
+	fim        
+fim
+fim
